@@ -34,7 +34,6 @@ function isHappy(n) {
     seen.add(n);
     n = getNext(n);
   }
-
   return n === 1;
 }
 
@@ -46,7 +45,6 @@ function getNext(n) {
     sum += digit * digit;
     n = Math.floor(n / 10);
   }
-
   return sum;
 }
 

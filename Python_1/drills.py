@@ -36,14 +36,14 @@ def fizzbuzz(n):
 
 
 def is_prime(n):
-    """Return True if n is prime.
-
-    Only loop up to int(n ** 0.5) + 1 -- if n has a factor above its
-    square root, it also has one below. Handle n < 2.
-
-    is_prime(1) -> False,  is_prime(2) -> True,  is_prime(9) -> False
-    """
-    raise NotImplementedError
+    if n < 2:
+        return False
+    d = 2
+    while d * d <= n:
+        if n % d == 0:
+            return False
+        d += 1
+    return True
 
 
 def reverse_digits(n):
@@ -59,7 +59,26 @@ def reverse_digits(n):
     Careful: -7 // 10 is -1 in Python, not 0. Work with abs(n) and
     reapply the sign at the end.
     """
-    raise NotImplementedError
+    if n < 0:
+        is_negative = True
+    else:
+        is_negative = False
+
+    if n < 0:
+        n = -n
+
+    result = 0
+
+    while n > 0:
+        last_digit = n % 10 # reads last digit 
+        result = result * 10
+        result = result + last_digit
+        n = n // 10
+
+    if is_negative:
+        return -result
+    else:
+        return result
 
 
 def second_largest(nums):

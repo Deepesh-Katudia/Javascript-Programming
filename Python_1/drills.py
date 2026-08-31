@@ -91,7 +91,19 @@ def second_largest(nums):
     second_largest([2, 2]) -> None
     second_largest([7]) -> None
     """
-    raise NotImplementedError
+    if not nums:
+        return None
+
+    largest = max(nums)
+    second = None 
+    for x in nums:
+        if x == largest:
+            continue
+        if second is None:
+            second = x
+        elif x > second:
+            second = x
+    return second 
 
 
 def rotate(nums, k):
@@ -102,7 +114,10 @@ def rotate(nums, k):
     k can be larger than len(nums) -- use k % len(nums).
     Solve it with slicing. One line is possible.
     """
-    raise NotImplementedError
+    if not nums:
+        return []
+    k = k % len(nums)
+    return nums[-k:] + nums[:-k]
 
 
 def rotate_in_place(nums, k):
@@ -114,7 +129,10 @@ def rotate_in_place(nums, k):
     nums = [1, 2, 3, 4, 5]; rotate_in_place(nums, 2)
     nums is now [4, 5, 1, 2, 3]
     """
-    raise NotImplementedError
+    if not nums:
+        return []
+    k = k % len(nums)
+    nums[:] = nums[-k:] + nums[:-k]
 
 
 # =============================================================================
@@ -135,7 +153,11 @@ def two_sum(nums, target):
 
     COMPLEXITY: time ?, space ?
     """
-    raise NotImplementedError
+    for i in range(len(nums)):
+        for j in range(i+1, len(nums)):
+            if nums[i] + nums[j] == target:
+                return [i,j]
+    return[]
 
 
 def max_profit(prices):
@@ -149,7 +171,15 @@ def max_profit(prices):
 
     COMPLEXITY: time ?, space ?
     """
-    raise NotImplementedError
+    best = 0
+    for i in range(len(prices)):
+        for j in range(i+1, len(prices)):
+            profit = prices[j] - prices[i]
+            if profit > best:
+                best = profit
+    return best
+         
+
 
 
 def is_palindrome(s):
